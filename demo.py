@@ -20,13 +20,18 @@ def get_key(town_tuple):
     return town_tuple[1]
 
 def main():
+    total = 0
     all_data = get_data_rows("MAEmplyomentData.xlsx")
     town_data = process_data(all_data)
     town_data.sort(key=get_key)
+    for data in town_data:
+        total = total+data[1]
     how_many = len(town_data)
     middle = how_many//2
     median_town = town_data[middle]
+    average = total / how_many
     print(f"The town with the median labor force is {median_town[0]} with a labor force of {median_town[1]} people")
+    print(f"The average labor force is {average:.2f} people")
 
 if __name__ == '__main__':
     main()
